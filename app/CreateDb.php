@@ -35,6 +35,12 @@
                 $stmt = $this->db->query($sql);
                 if($stmt === false) return "Ошибка создания таблицы comments";
                 else echo "<br> Таблица comments создана!";
+
+                $sql = "ALTER TABLE `comments` ADD FULLTEXT KEY `body_ft` (`body`)";
+                $stmt = $this->db->query($sql);
+                if($stmt === false) return "Ошибка создания индекса fulltext";
+                else echo "<br> Индекс создан.";
+
             }
 
             $f_json = 'https://jsonplaceholder.typicode.com/posts';
