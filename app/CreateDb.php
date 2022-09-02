@@ -8,7 +8,8 @@
             parent::__construct();
             $sql = "SHOW TABLES LIKE 'articles' ";
             $stmt = $this->db->query($sql);
-            if($stmt === false) {
+            $res = $stmt->fetch(PDO::FETCH_ASSOC);
+            if($res === false) {
                 $sql = "CREATE TABLE `articles` (
                   `userId` int(11) NOT NULL,
                   `id` int(11) NOT NULL,
@@ -19,12 +20,12 @@
                 $stmt = $this->db->query($sql);
                 if($stmt === false) return "Ошибка создания таблицы articles";
                 else echo "<br> Таблица articles создана!";
-
             }
 
             $sql = "SHOW TABLES LIKE 'comments' ";
             $stmt = $this->db->query($sql);
-            if($stmt === false) {
+            $res = $stmt->fetch(PDO::FETCH_ASSOC);
+            if($res === false) {
                 $sql = "CREATE TABLE `comments` (
                   `postId` int(11) NOT NULL,
                   `id` int(11) NOT NULL,
